@@ -1,0 +1,223 @@
+<Window x:Class="FatalityLoader.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Fatality Loader" Height="380" Width="600"
+        WindowStyle="None" ResizeMode="NoResize"
+        Background="#111111"
+        WindowStartupLocation="CenterScreen"
+        Icon="icon.png"
+        MouseDown="Window_MouseDown">
+    
+    <Window.Resources>
+        <Style x:Key="PanelBorder" TargetType="Border">
+            <Setter Property="Background" Value="#181818"/>
+            <Setter Property="CornerRadius" Value="6"/>
+            <Setter Property="BorderBrush" Value="#252525"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+
+        <Style x:Key="ActionButton" TargetType="Button">
+            <Setter Property="Background" Value="#181818"/>
+            <Setter Property="Foreground" Value="#AAAAAA"/>
+            <Setter Property="BorderBrush" Value="#252525"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                CornerRadius="6">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#222222"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#151515"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="ScrollBar">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Width" Value="0"/>
+            <Setter Property="Height" Value="0"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Background="#D6336C"/>
+
+        <Grid Grid.Row="1" Background="#181818" Panel.ZIndex="1">
+            <Grid.Effect>
+                <DropShadowEffect Color="Black" Direction="270" ShadowDepth="5" BlurRadius="15" Opacity="0.6"/>
+            </Grid.Effect>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="20,0">
+                <Border>
+                    <Border.Effect>
+                        <DropShadowEffect Color="#A000FF" Direction="315" ShadowDepth="2" BlurRadius="0" Opacity="1"/>
+                    </Border.Effect>
+                    <TextBlock Text="FATALITY" FontSize="28" FontWeight="Black" FontFamily="Segoe UI Black" Foreground="White">
+                        <TextBlock.Effect>
+                            <DropShadowEffect Color="#FF0040" Direction="135" ShadowDepth="2" BlurRadius="0" Opacity="1"/>
+                        </TextBlock.Effect>
+                    </TextBlock>
+                </Border>
+            </StackPanel>
+            
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="20,0">
+                <TextBlock Text="t.me/cs2sources" Foreground="#DDDDDD" VerticalAlignment="Center" Margin="0,0,15,0" FontSize="16" FontWeight="SemiBold"/>
+                <Ellipse Width="32" Height="32">
+                    <Ellipse.Fill>
+                        <ImageBrush ImageSource="https://avatars.fastly.steamstatic.com/922e1f6c62390bb59b43039019f6dffdd1c97cf8_full.jpg"/>
+                    </Ellipse.Fill>
+                </Ellipse>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="2" Margin="20,20,20,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="15"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" Style="{StaticResource PanelBorder}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Border Grid.Row="0" Background="#121212" CornerRadius="6,6,0,0">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="15,15,15,10">
+                                <Image Source="soldier.png" Width="30" Height="30" Margin="0,0,15,0" RenderOptions.BitmapScalingMode="HighQuality"/>
+                                <StackPanel VerticalAlignment="Center">
+                                    <TextBlock Text="Counter-Strike 2" Foreground="White" FontWeight="Bold" FontSize="16"/>
+                                    <TextBlock Text="Products: 1" Foreground="#666666" FontSize="12" Margin="0,2,0,0"/>
+                                </StackPanel>
+                            </StackPanel>
+                            <Border Background="#252525" Height="1" UseLayoutRounding="True" SnapsToDevicePixels="True"/>
+                        </StackPanel>
+                    </Border>
+
+                    <StackPanel Grid.Row="1" Margin="15">
+                        <Border Background="#111111" CornerRadius="6" Height="60">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Border Grid.Column="0" Background="#D6336C" CornerRadius="2" Width="3" Height="24" VerticalAlignment="Center" Margin="4,0,0,0"/>
+                                
+                                <Grid Grid.Column="1" Margin="10,10">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Text="fatality cs2" Foreground="White" FontWeight="Bold" FontSize="14" FontStretch="Condensed"/>
+                                    <Grid Grid.Row="1" VerticalAlignment="Bottom">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="2*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel Grid.Column="0" Orientation="Horizontal">
+                                            <TextBlock Text="Status: " Foreground="#666666" FontSize="12"/>
+                                            <TextBlock x:Name="StatusText" Text="Online" Foreground="#4CAF50" FontWeight="Bold" FontSize="12" TextTrimming="CharacterEllipsis" MaxWidth="120" ToolTipService.ShowDuration="10000"/>
+                                        </StackPanel>
+                                        <TextBlock Grid.Column="1" Text="Version: 1.20.15" Foreground="#666666" FontSize="12" HorizontalAlignment="Right"/>
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Border Grid.Row="0" Style="{StaticResource PanelBorder}" Margin="0,0,0,15">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        
+                        <Border Grid.Row="0" Background="#121212" CornerRadius="6,6,0,0">
+                            <StackPanel>
+                                <TextBlock Text="Changelog" Foreground="White" FontWeight="Bold" FontSize="14" Margin="15,10,15,10"/>
+                                <Border Background="#252525" Height="1" UseLayoutRounding="True" SnapsToDevicePixels="True"/>
+                            </StackPanel>
+                        </Border>
+                        
+                        <ScrollViewer Grid.Row="1" Margin="15,10,15,15" VerticalScrollBarVisibility="Auto">
+                            <TextBlock Foreground="#CCCCCC" FontSize="13" LineHeight="20" TextWrapping="Wrap">
+                                <Run Text="** hotfix 21.11 **"/><LineBreak/>
+                                - fixed many prediction errors<LineBreak/>
+                                - fixed viewmodel issues<LineBreak/>
+                                - fixed fake pitch not working anymore<LineBreak/>
+                                - improved performance<LineBreak/>
+                                <LineBreak/>
+                                <Run Text="** hotfix 20.11 **"/><LineBreak/>
+                                - fixes after the latest game update:<LineBreak/>
+                                - fixed unintended api change
+                            </TextBlock>
+                        </ScrollViewer>
+                    </Grid>
+                </Border>
+
+                <Border Grid.Row="1" Style="{StaticResource PanelBorder}" Margin="0,0,0,10" Height="60">
+                    <Grid Margin="20,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0" VerticalAlignment="Center">
+                            <TextBlock Text="Expires:" Foreground="White" FontSize="14"/>
+                            <TextBlock Text="Never" Foreground="#AAAAAA" FontSize="14" HorizontalAlignment="Right"/>
+                        </Grid>
+                        <Grid Grid.Row="1" VerticalAlignment="Center">
+                            <TextBlock Text="Last update:" Foreground="White" FontSize="14"/>
+                            <TextBlock Text="1 day ago" Foreground="#AAAAAA" FontSize="14" HorizontalAlignment="Right"/>
+                        </Grid>
+                    </Grid>
+                </Border>
+
+                <Grid Grid.Row="2" Height="40">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="15"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <Button Grid.Column="0" Content="Exit" Style="{StaticResource ActionButton}" Click="ExitButton_Click" Background="#141414" Foreground="#666666"/>
+                    <Button Grid.Column="2" Content="Load" Style="{StaticResource ActionButton}" Click="LoadButton_Click" Background="#1C1C1C" Foreground="White"/> 
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
