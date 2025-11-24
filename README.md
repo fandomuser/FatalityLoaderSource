@@ -13,25 +13,17 @@ A modern, sleek DLL loader for Counter-Strike 2 with a clean WPF interface inspi
 ## ✨ Features
 
 - **Modern UI Design**: Clean, dark-themed interface with glitch effects and smooth animations
-- **Automatic Download**: Fetches the latest DLL from a remote source
-- **LoadLibrary Injection**: Reliable DLL injection via standard Windows APIs
-- **Real-time Status**: Visual feedback for download and injection progress
+- **Manual Map Injection**: Robust injection method that works without `-insecure` launch option
+- **Local DLL Loading**: Loads `TestDLL_x64.dll` directly from the application directory
+- **Real-time Status**: Visual feedback for injection progress
 - **Self-Contained Build**: Single executable with embedded .NET runtime (no dependencies required)
 - **Silent Operation**: No intrusive message boxes or prompts
-
-## 🖼️ Interface
-
-- **Header Panel**: Fatality branding with RGB glitch effect
-- **Product Section**: CS2 product information with online status indicator
-- **Changelog**: Displays recent updates and patches
-- **Subscription Info**: Shows license expiration and last update time
-- **Action Buttons**: Clean exit and load buttons with hover effects
 
 ## 🔧 Technical Details
 
 - **Framework**: WPF (.NET 8.0)
 - **Language**: C#
-- **Injection Method**: LoadLibrary via `CreateRemoteThread`
+- **Injection Method**: Manual Map (with TLS support, SEH disabled for compatibility)
 - **Target Process**: `cs2.exe`
 - **Build Type**: Self-contained single-file executable
 
@@ -39,54 +31,17 @@ A modern, sleek DLL loader for Counter-Strike 2 with a clean WPF interface inspi
 
 ### Prerequisites
 - [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
-- Visual Studio 2022 (optional, for IDE support)
+- Visual Studio 2022 (with C++ workload for Test DLL)
 
 ### Build Instructions
 
-**Option 1: Command Line (Recommended)**
+**1. Build the Loader (C#)**
 ```powershell
-dotnet publish FatalityLoader.csproj -c Release -r win-x64
+dotnet publish FatalityLoader.csproj -c Release -r win-x64 /p:PublishSingleFile=true /p:SelfContained=true /p:IncludeNativeLibrariesForSelfExtract=true /p:IncludeAllContentForSelfExtract=true
 ```
 
-The compiled executable will be located at:
-```
-bin\Release\net8.0-windows\win-x64\publish\FatalityLoader.exe
-```
-
-**Option 2: Visual Studio**
-1. Open `FatalityLoader.sln`
-2. Set build configuration to **Release**
-3. Right-click project → **Publish**
-4. Select the folder profile and publish
-
-## 🚀 Usage
-
-1. Ensure Counter-Strike 2 is running
-2. Launch `FatalityLoader.exe`
-3. Click the **Load** button
-4. Wait for the "Injected!" status message
-
-The loader will:
-- Download the DLL from the configured URL
-- Save it to a temporary location with a unique filename
-- Inject it into the CS2 process
-
-## ⚙️ Configuration
-
-The DLL URL can be modified in `MainWindow.xaml.cs`:
-```csharp
-string dllUrl = "https://github.com/fandomuser/xz3/raw/refs/heads/main/TestDLL.dll";
-```
-
-## ⚠️ Security Notice
-
-**Windows Defender Warning**: This application uses process injection techniques (`OpenProcess`, `WriteProcessMemory`, `CreateRemoteThread`) which are commonly flagged by antivirus software. These are legitimate Windows APIs used for DLL injection.
-
-**To use this loader:**
-- Add the executable to Windows Defender exclusions
-- Or temporarily disable real-time protection
-
-This is expected behavior for any DLL injector and does not indicate malicious code.
+**2. Build the Test DLL (C++)**
+Open `TestDLL_CPP/TestDLL_CPP.vcxproj` in Visual Studio and build for **Release x64**.
 
 ## 🛡️ Disclaimer
 
