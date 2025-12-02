@@ -55,7 +55,30 @@
             <Setter Property="Width" Value="0"/>
             <Setter Property="Height" Value="0"/>
         </Style>
+
+        <CubicEase x:Key="EaseInOut" EasingMode="EaseInOut"/>
+        
+        <Storyboard x:Key="PurpleShadowAnimation" RepeatBehavior="Forever" AutoReverse="True">
+            <DoubleAnimation Storyboard.TargetName="PurpleShadow"
+                           Storyboard.TargetProperty="Direction"
+                           From="315" To="135"
+                           Duration="0:0:1"/>
+        </Storyboard>
+        
+        <Storyboard x:Key="RedShadowAnimation" RepeatBehavior="Forever" AutoReverse="True">
+            <DoubleAnimation Storyboard.TargetName="RedShadow"
+                           Storyboard.TargetProperty="Direction"
+                           From="135" To="315"
+                           Duration="0:0:1"/>
+        </Storyboard>
     </Window.Resources>
+
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Loaded">
+            <BeginStoryboard Storyboard="{StaticResource PurpleShadowAnimation}"/>
+            <BeginStoryboard Storyboard="{StaticResource RedShadowAnimation}"/>
+        </EventTrigger>
+    </Window.Triggers>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -73,11 +96,21 @@
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="20,0">
                 <Border>
                     <Border.Effect>
-                        <DropShadowEffect Color="#A000FF" Direction="315" ShadowDepth="2" BlurRadius="0" Opacity="1"/>
+                        <DropShadowEffect x:Name="PurpleShadow" 
+                                        Color="#A000FF" 
+                                        Direction="315" 
+                                        ShadowDepth="2" 
+                                        BlurRadius="0" 
+                                        Opacity="1"/>
                     </Border.Effect>
                     <TextBlock Text="FATALITY" FontSize="28" FontWeight="Black" FontFamily="Segoe UI Black" Foreground="White">
                         <TextBlock.Effect>
-                            <DropShadowEffect Color="#FF0040" Direction="135" ShadowDepth="2" BlurRadius="0" Opacity="1"/>
+                            <DropShadowEffect x:Name="RedShadow" 
+                                            Color="#FF0040" 
+                                            Direction="135" 
+                                            ShadowDepth="2" 
+                                            BlurRadius="0" 
+                                            Opacity="1"/>
                         </TextBlock.Effect>
                     </TextBlock>
                 </Border>
